@@ -1,1 +1,28 @@
+// Multiplication
+lli mul(lli a, lli b){
+	return (a*b)%MOD;
+}
 
+// Fast method to get a^b
+lli binpower(lli a, lli b){
+    lli z = 1;
+    while(b){
+        if(b & 1) z = mul(z,a);
+        a = mul(a, a);
+        b /=2;
+    }
+    return z;
+}
+
+// Divide
+lli divide(lli a, lli b){
+    return mul(a, binpower(b, MOD-2));
+}
+
+// Addition
+lli add(lli a, lli b){
+    a += b;
+    while(a >= MOD) a-= MOD;
+    while(a < 0) a+= MOD;
+    return a;
+}
