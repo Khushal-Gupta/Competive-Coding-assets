@@ -12,10 +12,13 @@ class DSU {
         while(par[parent] >= 0){
             parent = par[parent];
         }
-        if(parent != elem){
+        // Path collapsing
+        while(parent != elem){
             // To collapse the the size of chains
             // if parent of this element is other than itself update it
+            T nextelem = par[elem];
             par[elem] = parent;
+            elem = nextelem;
         }
         return parent;
     }
@@ -23,6 +26,7 @@ class DSU {
     void unionNodes(T a, T b){
         T parent_a = getParent(a);
         T parent_b = getParent(b);
+        if(parent_a == parent_b) return;  // already in the same set, no need to update
         T size_par_a = getSetSize(a);
         T size_par_b = getSetSize(b);
         if(size_par_a >= size_par_b){
