@@ -1,3 +1,16 @@
+#define lli long long int
+
+const lli MOD = 1e9+7;
+
+// Addition
+lli add(lli a, lli b){
+    a += b;
+    while(a < 0) a+= MOD;
+    a %= MOD;
+    return a;
+}
+
+
 // Multiplication
 lli mul(lli a, lli b){
 	return (a*b)%MOD;
@@ -14,15 +27,8 @@ lli binpower(lli a, lli b){
     return z;
 }
 
-// Divide
-lli divide(lli a, lli b){
-    return mul(a, binpower(b, MOD-2));
+// Modulo inverse of b
+lli modinv(lli b){
+    return binpower(b, MOD-2);
 }
 
-// Addition
-lli add(lli a, lli b){
-    a += b;
-    while(a >= MOD) a-= MOD;
-    while(a < 0) a+= MOD;
-    return a;
-}
